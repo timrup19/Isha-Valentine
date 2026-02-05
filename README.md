@@ -15,7 +15,7 @@ A charming, interactive "choose your own adventure" Valentine's Day website. Bui
 ## 🚀 Setup Instructions
 
 ### Prerequisites
-- Node.js (v16 or higher)
+- Node.js (v20.19.0 or v22.12.0+)
 - npm
 
 ### Installation
