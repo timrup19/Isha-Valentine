@@ -1,0 +1,128 @@
+/* App container with gradient background */
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #ffeef8 0%, #ffe6f0 50%, #fff0f5 100%);
+}
+
+/* Scene container with fade transitions */
+.scene-container {
+  width: 100%;
+  max-width: 600px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.scene-container.fade-in {
+  opacity: 1;
+}
+
+.scene-container.fade-out {
+  opacity: 0;
+}
+
+/* Card styling */
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 40px rgba(255, 105, 180, 0.15);
+  text-align: center;
+}
+
+/* Scene title */
+.scene-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #d63384;
+  font-weight: 600;
+}
+
+/* Scene text */
+.scene-text {
+  margin-bottom: 2rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.scene-text p {
+  margin: 0.8rem 0;
+  font-size: 1.1rem;
+}
+
+/* Choices container */
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Choice buttons */
+.choice-button {
+  background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+  min-height: 48px; /* Accessibility: larger tap targets */
+}
+
+.choice-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+}
+
+.choice-button:active {
+  transform: translateY(0);
+}
+
+.choice-button:focus {
+  outline: 3px solid #ff69b4;
+  outline-offset: 3px;
+}
+
+/* Progress indicator */
+.progress {
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 1rem;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 640px) {
+  .card {
+    padding: 2rem 1.5rem;
+  }
+
+  .scene-title {
+    font-size: 1.5rem;
+  }
+
+  .scene-text p {
+    font-size: 1rem;
+  }
+
+  .choice-button {
+    font-size: 1rem;
+    padding: 0.9rem 1.5rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 375px) {
+  .app {
+    padding: 0.5rem;
+  }
+
+  .card {
+    padding: 1.5rem 1rem;
+  }
+}
