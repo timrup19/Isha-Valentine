@@ -1,16 +1,22 @@
 # Secret Valentine Adventure 💕
 
-A charming, interactive "choose your own adventure" Valentine's Day website. Built with React + Vite for a smooth, mobile-friendly experience.
+A charming, interactive "choose your own adventure" Valentine's Day website. Built with React + Vite + Framer Motion for a cinematic, emotionally paced experience.
 
 ## ✨ Features
 
 - 🎭 Interactive branching story with multiple paths
 - 📱 Mobile-first, responsive design
-- ✨ Smooth scene transitions with fade effects
-- 🎉 Confetti celebration on the final YES
+- 🎬 Cinematic scene transitions with slide & fade animations
+- 📝 Sequential text reveal with pacing control
+- 💖 Playful, tactile button designs with hover effects
+- 🌸 Subtle ambient floating hearts background
+- 🎨 Enhanced visual depth with gradients and glows
+- 🎯 Emotional scene emphasis for key moments
+- 🎉 Enhanced confetti celebration on the final YES
 - ♿ Accessible (keyboard navigation, good contrast, large tap targets)
-- 📊 Progress indicator showing current scene
+- 📊 Progress dots indicator showing journey position
 - 🔄 Restart functionality
+- ⏸️ Smart button disabling until text animations complete
 
 ## 🚀 Setup Instructions
 
@@ -147,8 +153,9 @@ SCENE_ID: {
 
 - **React** - UI library
 - **Vite** - Build tool and dev server
+- **Framer Motion** - Animation library for smooth, cinematic transitions
 - **canvas-confetti** - Confetti animations
-- **CSS3** - Styling with gradients and transitions
+- **CSS3** - Styling with gradients, shadows, and custom animations
 
 ## 📱 Mobile Support
 
@@ -168,18 +175,98 @@ The website is optimized for mobile devices with:
 
 ## 🎨 Customization
 
-### Colors
+### Animation System
 
-Edit the colors in `src/App.css`:
-- Background gradient: `.app` class
-- Button colors: `.choice-button` class
-- Text colors: `.scene-text` and related classes
+The app uses **Framer Motion** for smooth, cinematic animations. Animation behavior is controlled through several components:
 
-### Animations
+#### Text Animation Timing
 
-- Scene transitions: Adjust timing in `.scene-container` transition
-- Button hover effects: Modify `.choice-button:hover`
-- Confetti: Configure in `src/App.jsx` useEffect hook
+In `src/AnimatedText.jsx`:
+- `delayBetween`: Time between each paragraph (0.4s normal, 0.6s emotional)
+- `delayChildren`: Initial delay before first paragraph (0.2s)
+- Emotional scenes (S3, S6, S7) automatically use slower pacing
+
+```javascript
+const delayBetween = isEmotionalScene ? 0.6 : 0.4
+```
+
+#### Scene Transitions
+
+In `src/App.jsx`, the `sceneVariants` object controls:
+- `initial`: Scene entrance state (opacity, y position, scale)
+- `animate`: Final state with timing
+- `exit`: Scene exit animation
+
+```javascript
+const sceneVariants = {
+  initial: { opacity: 0, y: 50, scale: 0.95 },
+  animate: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6 } },
+  exit: { opacity: 0, y: -50, scale: 0.95, transition: { duration: 0.3 } }
+}
+```
+
+#### Button Animations
+
+Buttons have staggered entrance animations controlled by `buttonContainerVariants`:
+- `staggerChildren`: Delay between each button (0.15s)
+- `delayChildren`: Initial delay before buttons appear (0.2s)
+
+### Visual Styling
+
+#### Colors
+
+Edit colors in `src/App.css`:
+- **Background gradient**: `.app` - Multi-stop gradient for depth
+- **Button colors**: `.choice-button` - Pink gradient with hover effects
+- **Card shadows**: `.card` - Pink-tinted shadows for romantic feel
+- **Progress dots**: `.progress-dot` - Active, past, and future states
+- **Emotional scenes**: `.emotional-scene .card` - Enhanced shadow and gradient
+
+#### Floating Hearts
+
+Adjust ambient hearts in `src/FloatingHearts.jsx`:
+- Number of hearts: Change array length (currently 12)
+- Animation speed: Modify `animationDuration` (15-25s range)
+- Opacity: Adjust in `FloatingHearts.css` (currently 0.15)
+
+```javascript
+const hearts = Array.from({ length: 12 }, (_, i) => ({ ... }))
+```
+
+#### Confetti Celebration
+
+Configure confetti in `src/App.jsx`:
+- Duration: `duration` variable (currently 4000ms)
+- Particle count: `particleCount` calculation
+- Colors: Array of pink/red shades
+- Velocity and spread: `defaults` object
+
+### Emotional Scene Configuration
+
+To mark scenes as emotional (slower pacing, special styling), edit the array in `src/App.jsx`:
+
+```javascript
+const emotionalScenes = ['S3_SOFT_TURN', 'S6_SINCERE_PAUSE', 'S7_QUESTION']
+```
+
+Add or remove scene IDs as needed to control which scenes get enhanced treatment.
+
+### Adjusting Pacing
+
+To make the experience faster or slower:
+
+1. **Text animation speed**: Reduce/increase `delayBetween` in `AnimatedText.jsx`
+2. **Scene transitions**: Adjust `duration` in `sceneVariants`
+3. **Button entrance**: Modify `staggerChildren` timing
+4. **Overall feel**: Reduce all animation values by 30-40% for snappier feel
+
+### Mobile Responsiveness
+
+Responsive breakpoints in `src/App.css`:
+- `@media (max-width: 640px)` - Small tablets and phones
+- `@media (max-width: 375px)` - Extra small phones
+
+Adjust padding, font sizes, and spacing in these media queries.
 
 ## 📄 License
 
