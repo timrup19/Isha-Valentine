@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import confetti from 'canvas-confetti'
 import './App.css'
 import { story, getSceneNumber, getTotalScenes } from './story'
@@ -6,7 +6,7 @@ import { story, getSceneNumber, getTotalScenes } from './story'
 function App() {
   const [currentSceneId, setCurrentSceneId] = useState('S1_START')
   const [fadeIn, setFadeIn] = useState(true)
-  const [visitedYes, setVisitedYes] = useState(false)
+  const visitedYesRef = useRef(false)
 
   const currentScene = story[currentSceneId]
 
@@ -22,8 +22,8 @@ function App() {
 
   // Trigger confetti on YES scene
   useEffect(() => {
-    if (currentSceneId === 'S8_YES' && !visitedYes) {
-      setVisitedYes(true)
+    if (currentSceneId === 'S8_YES' && !visitedYesRef.current) {
+      visitedYesRef.current = true
       
       // Confetti burst with hearts
       const duration = 3000
@@ -62,12 +62,10 @@ function App() {
 
       return () => clearInterval(interval)
     }
-  }, [currentSceneId, visitedYes])
 
-  // Reset visited flag when restarting
-  useEffect(() => {
+    // Reset visited flag when restarting
     if (currentSceneId === 'S1_START') {
-      setVisitedYes(false)
+      visitedYesRef.current = false
     }
   }, [currentSceneId])
 
