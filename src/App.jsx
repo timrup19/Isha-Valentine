@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+/* eslint-disable no-unused-vars */
+import { AnimatePresence, motion } from 'framer-motion'
+/* eslint-enable no-unused-vars */
 import confetti from 'canvas-confetti'
 import './App.css'
 import { story, getSceneNumber, getTotalScenes } from './story'
@@ -19,7 +21,9 @@ function App() {
 
   // Reset text animation state when scene changes
   useEffect(() => {
-    setTextAnimationComplete(false)
+    // Using a key-based approach for scene rendering ensures clean state
+    const timer = setTimeout(() => setTextAnimationComplete(false), 0)
+    return () => clearTimeout(timer)
   }, [currentSceneId])
 
   // Handle scene transitions with animation

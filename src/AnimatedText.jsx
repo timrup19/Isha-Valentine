@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import { motion } from 'framer-motion'
+/* eslint-enable no-unused-vars */
 
 /**
  * AnimatedText component
@@ -6,7 +8,6 @@ import { motion } from 'framer-motion'
  * Calls onComplete when all paragraphs are done animating
  */
 function AnimatedText({ paragraphs, onComplete, isEmotionalScene = false }) {
-  const baseDelay = isEmotionalScene ? 0.5 : 0.3
   const delayBetween = isEmotionalScene ? 0.6 : 0.4
 
   const containerVariants = {
