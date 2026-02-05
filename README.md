@@ -182,12 +182,11 @@ The app uses **Framer Motion** for smooth, cinematic animations. Animation behav
 #### Text Animation Timing
 
 In `src/AnimatedText.jsx`:
-- `baseDelay`: Initial delay before text starts (0.3s normal, 0.5s emotional)
 - `delayBetween`: Time between each paragraph (0.4s normal, 0.6s emotional)
+- `delayChildren`: Initial delay before first paragraph (0.2s)
 - Emotional scenes (S3, S6, S7) automatically use slower pacing
 
 ```javascript
-const baseDelay = isEmotionalScene ? 0.5 : 0.3
 const delayBetween = isEmotionalScene ? 0.6 : 0.4
 ```
 

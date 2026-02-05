@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-/* eslint-enable no-unused-vars */
 
 /**
  * AnimatedText component
@@ -39,12 +38,16 @@ function AnimatedText({ paragraphs, onComplete, isEmotionalScene = false }) {
   // Calculate total animation time
   const totalAnimationTime = (paragraphs.length * delayBetween + 1.5) * 1000
 
-  // Notify parent when animation completes
-  if (onComplete) {
-    setTimeout(() => {
-      onComplete()
-    }, totalAnimationTime)
-  }
+  // Notify parent when animation completes using useEffect
+  useEffect(() => {
+    if (onComplete) {
+      const timer = setTimeout(() => {
+        onComplete()
+      }, totalAnimationTime)
+      
+      return () => clearTimeout(timer)
+    }
+  }, [onComplete, totalAnimationTime])
 
   return (
     <motion.div

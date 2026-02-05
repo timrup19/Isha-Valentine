@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-/* eslint-disable no-unused-vars */
 import { AnimatePresence, motion } from 'framer-motion'
-/* eslint-enable no-unused-vars */
 import confetti from 'canvas-confetti'
 import './App.css'
 import { story, getSceneNumber, getTotalScenes } from './story'
@@ -10,6 +8,7 @@ import FloatingHearts from './FloatingHearts'
 
 function App() {
   const [currentSceneId, setCurrentSceneId] = useState('S1_START')
+  const [animationKey, setAnimationKey] = useState(0)
   const [textAnimationComplete, setTextAnimationComplete] = useState(false)
   const visitedYesRef = useRef(false)
 
@@ -19,13 +18,6 @@ function App() {
   const emotionalScenes = ['S3_SOFT_TURN', 'S6_SINCERE_PAUSE', 'S7_QUESTION']
   const isEmotionalScene = emotionalScenes.includes(currentSceneId)
 
-  // Reset text animation state when scene changes
-  useEffect(() => {
-    // Using a key-based approach for scene rendering ensures clean state
-    const timer = setTimeout(() => setTextAnimationComplete(false), 0)
-    return () => clearTimeout(timer)
-  }, [currentSceneId])
-
   // Handle scene transitions with animation
   const handleChoice = (nextSceneId) => {
     // Scroll to top immediately
@@ -34,6 +26,8 @@ function App() {
     // Change scene after a brief delay
     setTimeout(() => {
       setCurrentSceneId(nextSceneId)
+      setTextAnimationComplete(false)
+      setAnimationKey(prev => prev + 1)
     }, 300)
   }
 
@@ -182,6 +176,7 @@ function App() {
             )}
             
             <AnimatedText 
+              key={animationKey}
               paragraphs={textParagraphs}
               onComplete={() => setTextAnimationComplete(true)}
               isEmotionalScene={isEmotionalScene}
