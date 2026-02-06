@@ -8,7 +8,7 @@ export const story = {
     text: [
       "Congrats! 🎉",
       "You've stumbled into a secret little adventure.",
-      "All you need to begin is a great big smile — teeth and everything 😁"
+      "All you need to begin is a great big smile! And I mean with teeth and everything 😁"
     ],
     choices: [
       { label: "Okay fine 😄", next: "S2_FLASHBACK" },
@@ -21,12 +21,12 @@ export const story = {
     text: [
       "Before we continue… a quick flashback.",
       "It's late. We're saying goodnight.",
-      "Brunch plans for the next day are being discussed.",
+      "We're discussing brunch plans for the next day.",
       "You wanted to meet at 10am.",
       "I wanted 1pm.",
-      "So naturally… I suggested 11:35.",
+      "So naturally… I suggested 11:35 (I wanted to sleep in).",
       "This somehow turned into our first real argument.",
-      "And honestly? That kind of sums us up pretty well."
+      "And hey? Doesn't that kind of sum us up pretty well?"
     ],
     choices: [
       { label: "11:35 was still valid 😌", next: "S2_CONVERGE" },
@@ -38,7 +38,7 @@ export const story = {
     id: "S2_CONVERGE",
     text: [
       "No winners. No losers.",
-      "Just two people being stubborn… and somehow laughing about it later."
+      "Just us being stubborn… and now we get to laugh about it togehther."
     ],
     choices: [
       { label: "Continue 💕", next: "S3_SOFT_TURN" }
@@ -56,7 +56,7 @@ export const story = {
       "But it also means you remember things deeply.",
       "You pick up on emotions other people miss.",
       "You always seem to know the right thing to say.",
-      { text: "You make the people around you feel cared for — and loved.", emphasis: true }
+      { text: "You make the people around you feel cared for and loved.", emphasis: true }
     ],
     choices: [
       { label: "Okay… continue 🥺", next: "S4_PICK_MEMORY" }
@@ -70,9 +70,9 @@ export const story = {
       "Pick the moment that still makes you laugh."
     ],
     choices: [
-      { label: "The 11:35 debate 😌", next: "S4_1135" },
       { label: "The banana bread incident 🍌", next: "S4_BANANA" },
-      { label: "There are too many", next: "S4_TOOMANY" }
+      { label: "Blippy 😳�", next: "S4_BLIPPY" },
+      { label: "Oh govna… 😌", next: "S4_GOVNA" }
     ]
   },
 
@@ -81,8 +81,12 @@ export const story = {
     text: [
       "Correct answer.",
       "We made banana bread, offered some upstairs…",
-      "and somehow ended up imagining the ceiling collapsing.",
+      "and somehow spent the rest of the night imagining the ceiling collapsing.",
       "\"Oh, Aritra! You brought her down to say thank you!\"",
+      "I still laugh every time I think about it.",
+      "Even more when I remember this wasn't the only time our surroundings betrayed us…",
+      "Like Blippy casually circling the window.",
+      "Or us slipping into our political personas.",
       "Honestly… I love that we laugh like this together."
     ],
     choices: [
@@ -90,26 +94,40 @@ export const story = {
     ]
   },
 
-  S4_1135: {
-    id: "S4_1135",
+  S4_BLIPPY: {
+    id: "S4_BLIPPY",
     text: [
-      "Also valid.",
-      "But let's be honest — banana bread chaos deserves its own category.",
-      "\"Oh, Aritra! You brought her down to say thank you!\"",
-      "Honestly… I love that we laugh like this together."
+      "Blippy… of course.",
+      "Just us, minding our business in the privacy of our room.",
+      "And somehow the Goodyear blimp kept circling like it knew what we were doing...",
+      "Every time it drifted past the window we'd panic and laugh.",
+      "\"Oh my god — Blippy's coming back for us.\"",
+      "And somehow it always did.",
+      "Which honestly fits the pattern.",
+      "Ceilings threatening to collapse during banana bread.",
+      "Ridiculous political personas we commit to way too hard.",
+      "Even the universe can't help but get involved in our chaos.",
+      "I love that we laugh like this together."
     ],
     choices: [
       { label: "Continue 💕", next: "S5_FUTURE_HINT" }
     ]
   },
 
-  S4_TOOMANY: {
-    id: "S4_TOOMANY",
+  S4_GOVNA: {
+    id: "S4_GOVNA",
     text: [
-      "Fair.",
-      "But some moments deserve to be immortalized.",
-      "\"Oh, Aritra! You brought her down to say thank you!\"",
-      "Honestly… I love that we laugh like this together."
+      "Oh govna…",
+      "Somehow we turned absolute nonsense into an entire political universe.",
+      "You — the mayor.",
+      "Me — the governor.",
+      "Completely unserious. Completely committed.",
+      "I still don't know how we keep a straight face long enough to do that.",
+      "But honestly… that's kind of our thing.",
+      "From imaginary politics",
+      "to blimps outside the window",
+      "to banana bread incidents that live rent-free in my head.",
+      "I love how we make even the dumbest moments feel special."
     ],
     choices: [
       { label: "Continue 💕", next: "S5_FUTURE_HINT" }
@@ -139,10 +157,10 @@ export const story = {
     text: [
       { text: "I see a future where we build something real.", emphasis: true },
       "A life we're proud of.",
-      "A home by the water.",
-      "A chaotic, beautiful wedding week.",
+      "A beautiful wedding week.",
+      "A home by the water in Long Island.",
       "A family that feels full of love.",
-      { text: "Mostly… I'm excited about growing together — and choosing each other through it all.", emphasis: true }
+      { text: "But most importantly… I'm excited about growing together and choosing each other through it all.", emphasis: true }
     ],
     choices: [
       { label: "Okay… 🥺", next: "S7_QUESTION" }
@@ -167,7 +185,7 @@ export const story = {
     id: "S8_YES",
     text: [
       "Best decision ever.",
-      "Screenshot this and send it to me 😌💘"
+      "Take a selfie of your reaction and send it to me 😌💘"
     ],
     choices: [
       { label: "Restart 🔁", next: "S1_START" }
