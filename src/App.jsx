@@ -45,56 +45,59 @@ function App() {
     if (currentSceneId === 'S8_YES' && !visitedYesRef.current) {
       visitedYesRef.current = true
       
-      // Multiple confetti bursts for celebration
-      const duration = 4000
-      const animationEnd = Date.now() + duration
-      const defaults = { 
-        startVelocity: 35, 
-        spread: 360, 
-        ticks: 80, 
-        zIndex: 1000,
-        scalar: 1.2
-      }
-
-      const randomInRange = (min, max) => {
-        return Math.random() * (max - min) + min
-      }
-
-      const interval = setInterval(() => {
-        const timeLeft = animationEnd - Date.now()
-
-        if (timeLeft <= 0) {
-          return clearInterval(interval)
+      // Delay confetti slightly to allow first tap/reading
+      setTimeout(() => {
+        // Multiple confetti bursts for celebration
+        const duration = 4000
+        const animationEnd = Date.now() + duration
+        const defaults = { 
+          startVelocity: 35, 
+          spread: 360, 
+          ticks: 80, 
+          zIndex: 0, // Behind the card so it doesn't block taps
+          scalar: 1.2
         }
 
-        const particleCount = 60 * (timeLeft / duration)
-        
-        // Center burst
-        confetti({
-          ...defaults,
-          particleCount: particleCount * 1.5,
-          origin: { x: 0.5, y: 0.5 },
-          colors: ['#ff69b4', '#ff1493', '#ff85c1', '#ffb6c1', '#ffc0cb']
-        })
-        
-        // Left side
-        confetti({
-          ...defaults,
-          particleCount,
-          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-          colors: ['#ff69b4', '#ff1493', '#ff85c1', '#ffb6c1']
-        })
-        
-        // Right side
-        confetti({
-          ...defaults,
-          particleCount,
-          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-          colors: ['#ff69b4', '#ff1493', '#ff85c1', '#ffb6c1']
-        })
-      }, 200)
+        const randomInRange = (min, max) => {
+          return Math.random() * (max - min) + min
+        }
 
-      return () => clearInterval(interval)
+        const interval = setInterval(() => {
+          const timeLeft = animationEnd - Date.now()
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval)
+          }
+
+          const particleCount = 60 * (timeLeft / duration)
+          
+          // Center burst
+          confetti({
+            ...defaults,
+            particleCount: particleCount * 1.5,
+            origin: { x: 0.5, y: 0.5 },
+            colors: ['#ff69b4', '#ff1493', '#ff85c1', '#ffb6c1', '#ffc0cb']
+          })
+          
+          // Left side
+          confetti({
+            ...defaults,
+            particleCount,
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+            colors: ['#ff69b4', '#ff1493', '#ff85c1', '#ffb6c1']
+          })
+          
+          // Right side
+          confetti({
+            ...defaults,
+            particleCount,
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+            colors: ['#ff69b4', '#ff1493', '#ff85c1', '#ffb6c1']
+          })
+        }, 200)
+
+        return () => clearInterval(interval)
+      }, 400) // Delay confetti by 400ms
     }
 
     // Reset visited flag when restarting
