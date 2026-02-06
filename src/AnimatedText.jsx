@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
  * Calls onComplete when all paragraphs are done animating
  */
 function AnimatedText({ paragraphs, onComplete, isEmotionalScene = false }) {
-  // Delay between lines in seconds: 300-600ms range as specified
+  // Delay between lines: 350ms for playful scenes, 550ms for emotional scenes
   const delayBetween = isEmotionalScene ? 0.55 : 0.35
 
   const containerVariants = {
@@ -59,8 +59,8 @@ function AnimatedText({ paragraphs, onComplete, isEmotionalScene = false }) {
     >
       {paragraphs.map((paragraph, index) => {
         // Handle both string and object formats for paragraphs
-        const text = typeof paragraph === 'string' ? paragraph : paragraph.text
-        const hasEmphasis = typeof paragraph === 'object' && paragraph.emphasis
+        const text = typeof paragraph === 'string' ? paragraph : (paragraph?.text ?? '')
+        const hasEmphasis = typeof paragraph === 'object' && paragraph?.emphasis
         
         return (
           <motion.p 

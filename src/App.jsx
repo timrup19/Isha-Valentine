@@ -6,6 +6,15 @@ import { story, getSceneNumber, getTotalScenes } from './story'
 import AnimatedText from './AnimatedText'
 import FloatingHearts from './FloatingHearts'
 
+// Helper function to classify scene types for mood shifts
+const getSceneType = (sceneId) => {
+  if (sceneId === 'S8_YES') return 'celebration'
+  if (sceneId === 'S7_QUESTION') return 'question'
+  const emotionalScenes = ['S3_SOFT_TURN', 'S6_SINCERE_PAUSE', 'S7_QUESTION']
+  if (emotionalScenes.includes(sceneId)) return 'emotional'
+  return 'playful'
+}
+
 function App() {
   const [currentSceneId, setCurrentSceneId] = useState('S1_START')
   const [animationKey, setAnimationKey] = useState(0)
@@ -14,19 +23,9 @@ function App() {
 
   const currentScene = story[currentSceneId]
   
-  // Determine if this is an emotional scene that needs special treatment
-  const emotionalScenes = ['S3_SOFT_TURN', 'S6_SINCERE_PAUSE', 'S7_QUESTION']
-  const isEmotionalScene = emotionalScenes.includes(currentSceneId)
-  
-  // Classify scene types for mood shifts
-  const getSceneType = (sceneId) => {
-    if (sceneId === 'S8_YES') return 'celebration'
-    if (sceneId === 'S7_QUESTION') return 'question'
-    if (emotionalScenes.includes(sceneId)) return 'emotional'
-    return 'playful'
-  }
-  
+  // Determine scene type and if it's emotional
   const sceneType = getSceneType(currentSceneId)
+  const isEmotionalScene = sceneType === 'emotional' || sceneType === 'question'
 
   // Handle scene transitions with animation
   const handleChoice = (nextSceneId) => {
