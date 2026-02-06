@@ -42,11 +42,14 @@ function App() {
 
   // Enhanced confetti on YES scene
   useEffect(() => {
+    let timeoutId
+    let intervalId
+
     if (currentSceneId === 'S8_YES' && !visitedYesRef.current) {
       visitedYesRef.current = true
       
       // Delay confetti slightly to allow first tap/reading
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         // Multiple confetti bursts for celebration
         const duration = 4000
         const animationEnd = Date.now() + duration
@@ -62,11 +65,11 @@ function App() {
           return Math.random() * (max - min) + min
         }
 
-        const interval = setInterval(() => {
+        intervalId = setInterval(() => {
           const timeLeft = animationEnd - Date.now()
 
           if (timeLeft <= 0) {
-            return clearInterval(interval)
+            return clearInterval(intervalId)
           }
 
           const particleCount = 60 * (timeLeft / duration)
@@ -95,14 +98,18 @@ function App() {
             colors: ['#ff69b4', '#ff1493', '#ff85c1', '#ffb6c1']
           })
         }, 200)
-
-        return () => clearInterval(interval)
-      }, 400) // Delay confetti by 400ms
+      }, 400)
     }
 
     // Reset visited flag when restarting
     if (currentSceneId === 'S1_START') {
       visitedYesRef.current = false
+    }
+
+    // Cleanup both timeout and interval
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId)
+      if (intervalId) clearInterval(intervalId)
     }
   }, [currentSceneId])
 

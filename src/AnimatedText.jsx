@@ -141,6 +141,8 @@ function AnimatedText({ paragraphs, onComplete, isEmotionalScene = false }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.5 }}
+        aria-label={`Sentence ${currentIndex + 1} of ${totalSentences}`}
+        aria-live="polite"
       >
         {currentIndex + 1} / {totalSentences}
       </motion.div>
