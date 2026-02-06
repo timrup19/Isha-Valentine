@@ -7,7 +7,8 @@ import { motion } from 'framer-motion'
  * Calls onComplete when all paragraphs are done animating
  */
 function AnimatedText({ paragraphs, onComplete, isEmotionalScene = false }) {
-  const delayBetween = isEmotionalScene ? 0.6 : 0.4
+  // Delay between lines: 350ms for playful scenes, 550ms for emotional scenes
+  const delayBetween = isEmotionalScene ? 0.55 : 0.35
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -56,15 +57,21 @@ function AnimatedText({ paragraphs, onComplete, isEmotionalScene = false }) {
       initial="hidden"
       animate="visible"
     >
-      {paragraphs.map((paragraph, index) => (
-        <motion.p 
-          key={index} 
-          variants={paragraphVariants}
-          className={isEmotionalScene ? 'emotional-text' : ''}
-        >
-          {paragraph}
-        </motion.p>
-      ))}
+      {paragraphs.map((paragraph, index) => {
+        // Handle both string and object formats for paragraphs
+        const text = typeof paragraph === 'string' ? paragraph : (paragraph?.text ?? '')
+        const hasEmphasis = typeof paragraph === 'object' && paragraph?.emphasis
+        
+        return (
+          <motion.p 
+            key={index} 
+            variants={paragraphVariants}
+            className={`${isEmotionalScene ? 'emotional-text' : ''} ${hasEmphasis ? 'emphasized-text' : ''}`}
+          >
+            {text}
+          </motion.p>
+        )
+      })}
     </motion.div>
   )
 }
