@@ -49,14 +49,14 @@ export const story = {
     id: "S3_SOFT_TURN",
     text: [
       "Jokes aside for a second…",
-      "There's something I really love about you.",
+      { text: "There's something I really love about you.", emphasis: true },
       "You care about every little detail.",
       "Sometimes that means you notice everything I do.",
       "Even the things I wish you wouldn't notice.",
       "But it also means you remember things deeply.",
       "You pick up on emotions other people miss.",
       "You always seem to know the right thing to say.",
-      "You make the people around you feel cared for — and loved."
+      { text: "You make the people around you feel cared for — and loved.", emphasis: true }
     ],
     choices: [
       { label: "Okay… continue 🥺", next: "S4_PICK_MEMORY" }
@@ -137,12 +137,12 @@ export const story = {
   S6_SINCERE_PAUSE: {
     id: "S6_SINCERE_PAUSE",
     text: [
-      "I see a future where we build something real.",
+      { text: "I see a future where we build something real.", emphasis: true },
       "A life we're proud of.",
       "A home by the water.",
       "A chaotic, beautiful wedding week.",
       "A family that feels full of love.",
-      "Mostly… I'm excited about growing together — and choosing each other through it all."
+      { text: "Mostly… I'm excited about growing together — and choosing each other through it all.", emphasis: true }
     ],
     choices: [
       { label: "Okay… 🥺", next: "S7_QUESTION" }
@@ -155,7 +155,7 @@ export const story = {
       "So…",
       "I guess this brings me to the obvious question.",
       "",
-      "Will you be my Valentine?"
+      { text: "Will you be my Valentine?", emphasis: true }
     ],
     choices: [
       { label: "Yes 💖", next: "S8_YES" },
