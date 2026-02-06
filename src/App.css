@@ -172,6 +172,81 @@
   font-size: 1.1rem;
 }
 
+/* Guided reading mode container */
+.guided-reading-container {
+  cursor: pointer;
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.guided-reading-container:focus {
+  outline: none;
+}
+
+.guided-reading-text {
+  margin-bottom: 0;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.guided-reading-text p {
+  margin: 2rem 0;
+}
+
+/* Sentence progress indicator */
+.sentence-progress {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  font-size: 0.85rem;
+  color: #999;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* Tap to continue indicator */
+.tap-indicator {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #ff69b4;
+  font-weight: 500;
+  pointer-events: none;
+  user-select: none;
+}
+
+.tap-text {
+  opacity: 0.7;
+}
+
+.tap-arrow {
+  font-size: 1.5rem;
+  animation: bounce-arrow 1.5s ease-in-out infinite;
+}
+
+@keyframes bounce-arrow {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
 /* Emotional text emphasis */
 .scene-text p.emotional-text {
   font-size: 1.15rem;
@@ -319,6 +394,23 @@
     width: 400px;
     height: 400px;
   }
+
+  .guided-reading-text {
+    min-height: 120px;
+  }
+
+  .guided-reading-text p {
+    margin: 1.5rem 0;
+  }
+
+  .tap-indicator {
+    font-size: 0.85rem;
+  }
+
+  .sentence-progress {
+    font-size: 0.75rem;
+    right: 15px;
+  }
 }
 
 /* Extra small screens */
@@ -342,5 +434,13 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .tap-arrow {
+    animation: none;
+  }
+
+  .guided-reading-container {
+    cursor: pointer;
   }
 }
